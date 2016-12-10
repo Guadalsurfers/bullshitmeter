@@ -55,7 +55,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -; Tablespace:
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE ar_internal_metadata (
@@ -67,7 +67,7 @@ CREATE TABLE ar_internal_metadata (
 
 
 --
--- Name: articles; Type: TABLE; Schema: public; Owner: -; Tablespace:
+-- Name: articles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE articles (
@@ -99,7 +99,7 @@ ALTER SEQUENCE articles_id_seq OWNED BY articles.id;
 
 
 --
--- Name: authors; Type: TABLE; Schema: public; Owner: -; Tablespace:
+-- Name: authors; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE authors (
@@ -131,7 +131,7 @@ ALTER SEQUENCE authors_id_seq OWNED BY authors.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace:
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE schema_migrations (
@@ -140,7 +140,7 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace:
+-- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE tags (
@@ -171,7 +171,7 @@ ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace:
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE users (
@@ -211,7 +211,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: votes; Type: TABLE; Schema: public; Owner: -; Tablespace:
+-- Name: votes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE votes (
@@ -279,7 +279,7 @@ ALTER TABLE ONLY votes ALTER COLUMN id SET DEFAULT nextval('votes_id_seq'::regcl
 
 
 --
--- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+-- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY ar_internal_metadata
@@ -287,7 +287,7 @@ ALTER TABLE ONLY ar_internal_metadata
 
 
 --
--- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+-- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY articles
@@ -295,7 +295,7 @@ ALTER TABLE ONLY articles
 
 
 --
--- Name: authors_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+-- Name: authors_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY authors
@@ -303,7 +303,7 @@ ALTER TABLE ONLY authors
 
 
 --
--- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY schema_migrations
@@ -311,7 +311,7 @@ ALTER TABLE ONLY schema_migrations
 
 
 --
--- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY tags
@@ -319,7 +319,7 @@ ALTER TABLE ONLY tags
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -327,7 +327,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+-- Name: votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY votes
@@ -335,63 +335,63 @@ ALTER TABLE ONLY votes
 
 
 --
--- Name: index_articles_on_url; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_articles_on_url; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_articles_on_url ON articles USING btree (url);
 
 
 --
--- Name: index_authors_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_authors_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_authors_on_name ON authors USING btree (name);
 
 
 --
--- Name: index_authors_on_twitter_handle; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_authors_on_twitter_handle; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_authors_on_twitter_handle ON authors USING btree (twitter_handle);
 
 
 --
--- Name: index_tags_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_tags_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_tags_on_name ON tags USING btree (name);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
 
 
 --
--- Name: index_votes_on_article_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_votes_on_article_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_votes_on_article_id ON votes USING btree (article_id);
 
 
 --
--- Name: index_votes_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_votes_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_votes_on_user_id ON votes USING btree (user_id);
 
 
 --
--- Name: index_votes_on_user_id_and_article_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_votes_on_user_id_and_article_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_votes_on_user_id_and_article_id ON votes USING btree (user_id, article_id);
@@ -420,3 +420,5 @@ ALTER TABLE ONLY votes
 SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20161210062100'), ('20161210064200'), ('20161210070349'), ('20161210072256'), ('20161210180133'), ('20161210180900'), ('20161210183056');
+
+
