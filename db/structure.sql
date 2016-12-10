@@ -67,6 +67,38 @@ CREATE TABLE ar_internal_metadata (
 
 
 --
+-- Name: article_tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE article_tags (
+    id integer NOT NULL,
+    article_id integer NOT NULL,
+    tag_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: article_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE article_tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: article_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE article_tags_id_seq OWNED BY article_tags.id;
+
+
+--
 -- Name: articles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -247,6 +279,13 @@ ALTER SEQUENCE votes_id_seq OWNED BY votes.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY article_tags ALTER COLUMN id SET DEFAULT nextval('article_tags_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY articles ALTER COLUMN id SET DEFAULT nextval('articles_id_seq'::regclass);
 
 
@@ -284,6 +323,14 @@ ALTER TABLE ONLY votes ALTER COLUMN id SET DEFAULT nextval('votes_id_seq'::regcl
 
 ALTER TABLE ONLY ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: article_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY article_tags
+    ADD CONSTRAINT article_tags_pkey PRIMARY KEY (id);
 
 
 --
@@ -332,6 +379,27 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY votes
     ADD CONSTRAINT votes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_article_tags_on_article_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_article_tags_on_article_id ON article_tags USING btree (article_id);
+
+
+--
+-- Name: index_article_tags_on_article_id_and_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_article_tags_on_article_id_and_tag_id ON article_tags USING btree (article_id, tag_id);
+
+
+--
+-- Name: index_article_tags_on_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_article_tags_on_tag_id ON article_tags USING btree (tag_id);
 
 
 --
@@ -406,6 +474,22 @@ ALTER TABLE ONLY votes
 
 
 --
+-- Name: fk_rails_646e8d3122; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY article_tags
+    ADD CONSTRAINT fk_rails_646e8d3122 FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE;
+
+
+--
+-- Name: fk_rails_b651172c61; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY article_tags
+    ADD CONSTRAINT fk_rails_b651172c61 FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE;
+
+
+--
 -- Name: fk_rails_c9b3bef597; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -419,6 +503,6 @@ ALTER TABLE ONLY votes
 
 SET search_path TO "$user",public;
 
-INSERT INTO schema_migrations (version) VALUES ('20161210062100'), ('20161210064200'), ('20161210070349'), ('20161210072256'), ('20161210180133'), ('20161210180900'), ('20161210183056');
+INSERT INTO schema_migrations (version) VALUES ('20161210062100'), ('20161210064200'), ('20161210070349'), ('20161210072256'), ('20161210180133'), ('20161210180900'), ('20161210183056'), ('20161210185832');
 
 
