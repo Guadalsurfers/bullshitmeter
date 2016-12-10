@@ -42,4 +42,14 @@ class ArticleTest < ActiveSupport::TestCase
       articles(:bullshit).destroy!
     end
   end
+
+  test "should have many authors" do
+    assert_equal Set.new([authors(:juan)]), Set.new(articles(:bullshit).authors)
+  end
+
+  test "should delete article_author when destroying" do
+    assert_difference "ArticleAuthor.count", -1 do
+      articles(:bullshit).destroy!
+    end
+  end
 end
