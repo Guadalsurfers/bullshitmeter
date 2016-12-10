@@ -1,8 +1,11 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require "bullshitmeter/assertions"
 
 class ActiveSupport::TestCase
+  include Bullshitmeter::Assertions
+
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
