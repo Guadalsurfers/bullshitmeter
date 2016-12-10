@@ -1,0 +1,7 @@
+bullshit:
+  url: http://article.example.com/bullshit
+  bs_index: 0
+
+legit:
+  url: http://article.example.com/legit
+  bs_index: 1
