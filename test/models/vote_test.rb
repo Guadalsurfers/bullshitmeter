@@ -17,4 +17,12 @@ class VoteTest < ActiveSupport::TestCase
   test "user and article should be unique" do
     assert_invalid? votes(:bullshit_negative).dup, article: "has already been taken"
   end
+
+  test "should be valid if all requirements are met" do
+    assert_valid? Vote.new(article: articles(:legit), user: users(:paco), rating: "positive")
+  end
+
+  test "fixtures should be valid" do
+    assert_valid? votes(:bullshit_negative)
+  end
 end
