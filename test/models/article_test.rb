@@ -31,4 +31,15 @@ class ArticleTest < ActiveSupport::TestCase
     assert_valid? articles(:bullshit)
     assert_valid? articles(:legit)
   end
+
+  # Relationships
+  test "should have many tags" do
+    assert_equal Set.new([tags(:economy)]), Set.new(articles(:bullshit).tags)
+  end
+
+  test "should delete article_tag when destroying" do
+    assert_difference "ArticleTag.count", -1 do
+      articles(:bullshit).destroy!
+    end
+  end
 end
