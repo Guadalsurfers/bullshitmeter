@@ -62,9 +62,7 @@ CREATE TABLE ar_internal_metadata (
 CREATE TABLE article_authors (
     id integer NOT NULL,
     article_id integer NOT NULL,
-    author_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    author_id integer NOT NULL
 );
 
 
@@ -94,9 +92,7 @@ ALTER SEQUENCE article_authors_id_seq OWNED BY article_authors.id;
 CREATE TABLE article_tags (
     id integer NOT NULL,
     article_id integer NOT NULL,
-    tag_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    tag_id integer NOT NULL
 );
 
 
@@ -647,6 +643,6 @@ ALTER TABLE ONLY votes
 
 SET search_path TO "$user",public;
 
-INSERT INTO schema_migrations (version) VALUES ('20161210062100'), ('20161210064200'), ('20161210070349'), ('20161210072256'), ('20161210180133'), ('20161210180900'), ('20161210183056'), ('20161210185832'), ('20161210192027'), ('20161210234549'), ('20161210235250'), ('20161211183447');
+INSERT INTO schema_migrations (version) VALUES ('20161210062100'), ('20161210064200'), ('20161210070349'), ('20161210072256'), ('20161210180133'), ('20161210180900'), ('20161210183056'), ('20161210185832'), ('20161210192027'), ('20161210234549'), ('20161210235250'), ('20161211183447'), ('20161211203556');
 
 

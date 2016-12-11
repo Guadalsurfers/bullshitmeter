@@ -6,7 +6,7 @@ class SubscriptorTest < ActiveSupport::TestCase
   end
 
   test 'should have a unique email' do
-    assert_invalid? subscriptors(:one), email: "has already been taken"
+    assert_invalid? subscriptors(:one).dup, email: "has already been taken"
   end
 
   test 'should be valid if all requirements are met' do

@@ -1,6 +1,10 @@
 bullshit:
   url: http://article.example.com/bullshit
   bs_index: 0
+  authors:
+    - juan
+  tags:
+    - economy
 
 legit:
   url: http://article.example.com/legit
