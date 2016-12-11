@@ -26,7 +26,7 @@ class Articles::FetchMetadata
   def add_authors!
     author_names = Articles::FetchMetadata::FetchAuthors.new.call(page)
     authors = author_names.map { |name| Author.find_or_create_by!(name: name) }
-    article.update!(auhtors: authors)
+    article.update!(authors: authors)
   end
 
   def add_tags!
