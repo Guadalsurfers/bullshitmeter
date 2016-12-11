@@ -6,11 +6,22 @@ class Articles::Rate
   end
 
   def call
-    article = Articles::FindOrCreate.new(url).call
-    Vote.create(user: user, article: article, rating: rating)
+    vote = Vote.create(user: user, article: article, rating: rating)
+    calculate_bs_index if vote.persisted?
+
+    vote
   end
 
   private
+
+  def article
+    @article ||= Articles::FindOrCreate.new(url).call
+  end
+
+  def calculate_bs_index
+    bs_index = article.votes.sum(:rating).to_f / article.votes.count
+    @article.update!(bs_index: bs_index)
+  end
 
   def user
     @user

@@ -18,8 +18,16 @@ class VoteTest < ActiveSupport::TestCase
     assert_invalid? votes(:bullshit_negative).dup, article: "has already been taken"
   end
 
+  test 'rating should be greater than or equal to 0' do
+    assert_invalid? Vote.new(rating: -0.1), rating: 'must be greater than or equal to 0'
+  end
+
+  test 'rating should be less than or equal to 1' do
+    assert_invalid? Vote.new(rating: 1.1), rating: 'must be less than or equal to 1'
+  end
+
   test "should be valid if all requirements are met" do
-    assert_valid? Vote.new(article: articles(:legit), user: users(:paco), rating: "positive")
+    assert_valid? Vote.new(article: articles(:legit), user: users(:paco), rating: 1)
   end
 
   test "fixtures should be valid" do
