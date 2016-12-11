@@ -193,6 +193,37 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: subscriptors; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE subscriptors (
+    id integer NOT NULL,
+    email citext NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: subscriptors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE subscriptors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: subscriptors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE subscriptors_id_seq OWNED BY subscriptors.id;
+
+
+--
 -- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -332,6 +363,13 @@ ALTER TABLE ONLY authors ALTER COLUMN id SET DEFAULT nextval('authors_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY subscriptors ALTER COLUMN id SET DEFAULT nextval('subscriptors_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
@@ -395,6 +433,14 @@ ALTER TABLE ONLY authors
 
 ALTER TABLE ONLY schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: subscriptors_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY subscriptors
+    ADD CONSTRAINT subscriptors_pkey PRIMARY KEY (id);
 
 
 --
@@ -482,6 +528,13 @@ CREATE INDEX index_authors_on_name ON authors USING btree (name);
 --
 
 CREATE INDEX index_authors_on_twitter_handle ON authors USING btree (twitter_handle);
+
+
+--
+-- Name: index_subscriptors_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_subscriptors_on_email ON subscriptors USING btree (email);
 
 
 --
@@ -594,6 +647,6 @@ ALTER TABLE ONLY votes
 
 SET search_path TO "$user",public;
 
-INSERT INTO schema_migrations (version) VALUES ('20161210062100'), ('20161210064200'), ('20161210070349'), ('20161210072256'), ('20161210180133'), ('20161210180900'), ('20161210183056'), ('20161210185832'), ('20161210192027'), ('20161210234549'), ('20161210235250');
+INSERT INTO schema_migrations (version) VALUES ('20161210062100'), ('20161210064200'), ('20161210070349'), ('20161210072256'), ('20161210180133'), ('20161210180900'), ('20161210183056'), ('20161210185832'), ('20161210192027'), ('20161210234549'), ('20161210235250'), ('20161211183447');
 
 
