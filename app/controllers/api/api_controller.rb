@@ -1,6 +1,7 @@
 class Api::ApiController < ApplicationController
   protect_from_forgery with: :null_session
   before_filter :authenticate_user_from_token!
+  respond_to :json
 
   def authenticate_user_from_token!
     if !authenticate_user
