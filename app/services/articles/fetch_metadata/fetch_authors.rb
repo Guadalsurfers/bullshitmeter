@@ -1,8 +1,10 @@
 class Articles::FetchMetadata
   class FetchAuthors
     def call(page)
-      authors = []
-      authors += fetch_authors_from_meta(page)
+      [
+        *fetch_authors_from_meta(page),
+        *fetch_authors_from_schema(page)
+      ].uniq
     end
 
     private
@@ -12,8 +14,8 @@ class Articles::FetchMetadata
     end
 
     def fetch_authors_from_schema(page)
-      page.css('meta[name="author"]').map { |tag| tag['content']}
-
+      page.search("//*[@itemtype='http://schema.org/Person' and @itemprop='author']").
+           search("[@itemprop='name']").map(&:text)
     end
   end
 end
