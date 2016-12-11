@@ -39,17 +39,6 @@ COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings
 
 SET search_path = public, pg_catalog;
 
---
--- Name: rating_enum; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE rating_enum AS ENUM (
-    'negative',
-    'neutral',
-    'positive'
-);
-
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -282,9 +271,9 @@ CREATE TABLE votes (
     id integer NOT NULL,
     user_id integer NOT NULL,
     article_id integer NOT NULL,
-    rating rating_enum NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    rating double precision NOT NULL
 );
 
 
@@ -587,6 +576,6 @@ ALTER TABLE ONLY votes
 
 SET search_path TO "$user",public;
 
-INSERT INTO schema_migrations (version) VALUES ('20161210062100'), ('20161210064200'), ('20161210070349'), ('20161210072256'), ('20161210180133'), ('20161210180900'), ('20161210183056'), ('20161210185832'), ('20161210192027');
+INSERT INTO schema_migrations (version) VALUES ('20161210062100'), ('20161210064200'), ('20161210070349'), ('20161210072256'), ('20161210180133'), ('20161210180900'), ('20161210183056'), ('20161210185832'), ('20161210192027'), ('20161210235250');
 
 
