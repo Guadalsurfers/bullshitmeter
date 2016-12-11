@@ -9,7 +9,7 @@ class User < ApplicationRecord
   before_save :ensure_authentication_token
 
   def self.find_or_create_from_google_token(token)
-    # begin
+    begin
       google_response = HTTParty.get(google_token_verification_endpoint_token token).parsed_response
 
       if valid_google_response? google_response
@@ -24,9 +24,9 @@ class User < ApplicationRecord
 
         return user
       end
-    # rescue
+    rescue
       # Gotta catch 'em all
-    # end
+    end
     nil
   end
 
