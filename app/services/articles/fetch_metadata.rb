@@ -31,7 +31,7 @@ class Articles::FetchMetadata
 
   def add_tags!
     tag_names = FetchTags.new.call(page)
-    article.tags = Article.where(name: tag_names)
+    article.tags = Tag.where(name: tag_names)
     article.save!
   end
 end
