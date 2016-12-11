@@ -1,0 +1,15 @@
+%section.main
+  = image_tag('logo.svg', class: 'logo-large', alt: 'Bullshitmeter')
+  %h1.main__title BULLSHITMETER
+
+  %section.subscribe-section
+    - if flash[:notice].present?
+      %p= flash[:notice]
+    - else
+      %p Keep up to date on Bullshitmeter news
+      = form_for @subscriptor, remote: true, html: { class: 'subscription-form' } do |f|
+        = f.email_field :email, placeholder: 'youremail@example.com', class: 'input-email'
+        = f.submit 'Subscribe', class: 'btn-subscribe'
+
+%footer
+  = link_to image_tag('github.svg', class: 'github-logo'), 'https://github.com/guadalsurfers/bullshitmeter'

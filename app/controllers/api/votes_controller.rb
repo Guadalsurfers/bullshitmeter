@@ -9,6 +9,7 @@ class Api::VotesController < Api::ApiController
   end
 
   private
+
   def vote_params
     params.require(:vote).permit(:article_url, :rating)
   end

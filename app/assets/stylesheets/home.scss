@@ -1,0 +1,76 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('https://fonts.googleapis.com/css?family=Righteous|Lato:300,300i,400');
+
+body {
+  background: #3CA55C; /* fallback for old browsers */
+  background: -webkit-linear-gradient(left top, #3CA55C , #B5AC49); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(left top, #3CA55C , #B5AC49); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  color: white
+}
+.main {
+  margin-top: 1rem;
+  text-align: center;
+  max-height: 100%;
+}
+
+.logo-large {
+  max-width: 150px;
+}
+
+.main__title {
+  color: white;
+  font-family: 'Righteous', cursive;
+  letter-spacing: 0.5rem;
+  font-size: 3rem;
+  margin: 0.2rem;
+}
+.subscribe-section {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+.subscription-form {
+  .input-email {
+    font-style: italic;
+    padding: 1rem;
+    min-width: 400px;
+    font-weight: 300;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+  }
+
+  .btn-subscribe {
+    font-family: 'Righteous', cursive;
+    color: white;
+    display: inline-block;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    border: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+    outline: none;
+    margin: 0;
+    text-transform: uppercase;
+    background: #EFB129; /* fallback for old browsers */
+  }
+}
+.github-logo {
+  max-width: 32px;
+}
+footer {
+  margin-top: 10rem;
+  text-align: center;
+}
