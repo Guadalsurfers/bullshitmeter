@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   before_save :ensure_authentication_token
 
-  def self.find_or_create_from_google_token(token)
+  def self.find_or_initialize_from_google_token(token)
     begin
       google_response = HTTParty.get(google_token_verification_endpoint_token token).parsed_response
 
