@@ -8,7 +8,7 @@ class Api::VotesControllerTest < ActionDispatch::IntegrationTest
     Articles::Rate.expects(:new).returns(service)
     service.expects(:call).returns(votes(:bullshit_negative))
 
-    post "/api/votes", params: { vote: { article_url: 'https://articles.example.com/foo', rating: 'neutral' } }
+    post api_votes_url, params: { vote: { article_url: 'https://articles.example.com/foo', rating: 'neutral' } }
 
     assert_response :success
   end
