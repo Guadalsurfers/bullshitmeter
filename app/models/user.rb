@@ -34,7 +34,10 @@ class User < ApplicationRecord
     super
   end
 
-  private
+  def can_vote_article?(article)
+    article.nil? || votes.find_by(article: article).nil?
+  end
+
   def self.google_token_verification_endpoint_token(token)
     "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{token}"
   end
@@ -42,6 +45,8 @@ class User < ApplicationRecord
   def self.valid_google_response?(google_response)
     (google_response['aud'] == GOOGLE_CLIENT_ID)
   end
+
+  private
 
   def ensure_authentication_token
     if authentication_token.blank?
