@@ -2,6 +2,9 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
+  host: localhost
+  encoding: utf8
+
 development:
   <<: *default
   database: bullshitmeter_development
@@ -11,3 +14,4 @@ test:
 production:
   <<: *default
   database: bullshitmeter_production
+  pool: 15
