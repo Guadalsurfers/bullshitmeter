@@ -1,25 +1,18 @@
-class Api::ArticlesController < ApplicationController
+class Api::ArticlesController < Api::ApiController
+  skip_before_filter :authenticate_user_from_token!, only: [:show]
+
   def show
     article = Article.find_by(url: params[:url])
     num_votes = article ? article.votes.count : 0
+    user = authenticate_user
 
     render(
       json: {
         article: article,
         num_votes: num_votes,
-        can_vote: !!current_user&.can_vote_article?(article)
+        can_vote: !!user&.can_vote_article?(article)
       },
       status: :ok
     )
-  end
-
-  private
-
-  def current_user
-    User.first
-  end
-
-  def vote_params
-    params.require(:vote).permit(:article_url, :rating)
   end
 end
