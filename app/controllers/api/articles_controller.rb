@@ -10,7 +10,7 @@ class Api::ArticlesController < Api::ApiController
       json: {
         article: article,
         num_votes: num_votes,
-        can_vote: !!user&.can_vote_article?(article)
+        vote: !!user&.vote_for_article(article)
       },
       status: :ok
     )

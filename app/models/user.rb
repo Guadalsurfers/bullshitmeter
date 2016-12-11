@@ -40,6 +40,10 @@ class User < ApplicationRecord
     article.nil? || votes.find_by(article: article).nil?
   end
 
+  def vote_for_article(article)
+    votes.find_by(article: article)
+  end
+
   def self.google_get_profile_endpoint(token)
     "https://www.googleapis.com/plus/v1/people/me?access_token=#{token}"
   end
