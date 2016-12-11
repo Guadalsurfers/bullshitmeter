@@ -1,1 +1,1 @@
-GOOGLE_CLIENT_ID = "276988820197-f9v6bvt197uepqjuuqtr6pg23b3b1g0j.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID = ENV['GOOGLE_CLIENT_ID'] || "276988820197-f9v6bvt197uepqjuuqtr6pg23b3b1g0j.apps.googleusercontent.com"
