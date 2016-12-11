@@ -26,14 +26,12 @@ class Articles::FetchMetadata
   def add_authors!
     author_names = Articles::FetchMetadata::FetchAuthors.new.call(page)
     authors = author_names.map { |name| Author.find_or_create_by!(name: name) }
-    article.authors = authors
-    article.save!
+    article.update!(auhtors: authors)
   end
 
   def add_tags!
     tag_names = FetchTags.new.call(page)
     tags = tag_names.map { |name| Tag.find_or_create_by!(name: name) }
-    article.tags = tags
-    article.save!
+    article.update!(tags: tags)
   end
 end
