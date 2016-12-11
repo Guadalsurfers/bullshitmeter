@@ -8,17 +8,19 @@ class User < ApplicationRecord
 
   before_save :ensure_authentication_token
 
-  def self.find_or_initialize_from_google_token(token)
+  def self.find_or_initialize_from_google_token(access_token)
     begin
-      google_response = HTTParty.get(google_token_verification_endpoint_token token).parsed_response
+      google_response = HTTParty.get(google_get_profile_endpoint access_token).parsed_response
 
-      if valid_google_response? google_response
-        google_id = google_response['sub']
+      print "Google Response = #{google_response}"
+
+      if valid_google_response?valid_google_response? google_response
+        google_id = google_response['id']
         user = User.find_or_initialize_by(google_id: google_id)
-        user.first_name = google_response['given_name']
-        user.last_name = google_response['family_name']
-        user.email = google_response['email']
-        user.password = 'es justo y necesario' # ~Clean Code~
+        user.first_name = google_response['name']['givenName']
+        user.last_name = google_response['name']['familyName']
+        user.email = "#{google_id}@gmail.com" # ~Clean Code~
+        user.password = 'es justo y necesario' # ~More Clean Code~
 
         return user
       end
@@ -38,12 +40,12 @@ class User < ApplicationRecord
     article.nil? || votes.find_by(article: article).nil?
   end
 
-  def self.google_token_verification_endpoint_token(token)
-    "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{token}"
+  def self.google_get_profile_endpoint(token)
+    "https://www.googleapis.com/plus/v1/people/me?access_token=#{token}"
   end
 
   def self.valid_google_response?(google_response)
-    (google_response['aud'] == GOOGLE_CLIENT_ID)
+    true # Will fix this shit later
   end
 
   private
