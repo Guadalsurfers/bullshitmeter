@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   def self.find_or_initialize_from_google_token(access_token)
     begin
-      if valid_google_token access_token
+      if valid_google_token? access_token
         google_response = HTTParty.get(google_get_profile_endpoint access_token).parsed_response
         google_id = google_response['id']
         user = User.find_or_initialize_by(google_id: google_id)
@@ -45,10 +45,10 @@ class User < ApplicationRecord
     "https://www.googleapis.com/plus/v1/people/me?access_token=#{token}"
   end
 
-  def self.valid_google_token(token)
+  def self.valid_google_token?(token)
     validation_url = "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=#{token}"
     parsed_response = HTTParty.get(validation_url).parsed_response
-    (parsed_response['aud']== GOOGLE_CLIENT_ID)
+    (parsed_response['aud'] == GOOGLE_CLIENT_ID)
   end
 
   private
