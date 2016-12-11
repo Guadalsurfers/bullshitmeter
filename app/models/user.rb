@@ -20,14 +20,18 @@ class User < ApplicationRecord
         user.email = google_response['email']
         user.password = 'es justo y necesario' # ~Clean Code~
 
-        user.save!
-
         return user
       end
     rescue
       # Gotta catch 'em all
     end
     nil
+  end
+
+  def as_json(options={})
+    options[:only] ||= [:email, :first_name, :last_name, :id,
+                        :authentication_token]
+    super
   end
 
   private

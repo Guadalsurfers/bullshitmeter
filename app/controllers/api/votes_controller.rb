@@ -1,4 +1,4 @@
-class Api::VotesController < Api::ApiController
+class Api::VotesController < ApplicationController
   def create
     vote = Articles::Rate.new(current_user, vote_params).call
     if vote.persisted?
