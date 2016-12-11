@@ -1,5 +1,5 @@
 require 'nokogiri'
-require 'open-uri'
+require 'httparty'
 
 class Articles::FetchMetadata
   def initialize(article_id)
@@ -20,7 +20,7 @@ class Articles::FetchMetadata
   end
 
   def page
-    @page ||= Nokogiri::HTML(open(article.url))
+    @page ||= Nokogiri::HTML(HTTParty.get(article.url))
   end
 
   def add_authors!
