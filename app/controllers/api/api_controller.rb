@@ -23,6 +23,6 @@ class Api::ApiController < ApplicationController
   end
 
   def auth_params
-    params.require(:user).permit(:authentication_token, :id)
+    params.fetch(:user, nil)&.slice(:authentication_token, :id)
   end
 end
