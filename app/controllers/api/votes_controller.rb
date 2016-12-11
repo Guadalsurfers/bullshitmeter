@@ -9,7 +9,6 @@ class Api::VotesController < ApplicationController
   end
 
   private
-
   # TODO
   def current_user
     User.first
