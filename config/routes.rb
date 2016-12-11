@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     resources :votes, only: [:create]
     resources :users, only: [:create, :index]
   end
+
+  devise_for :users
 end
