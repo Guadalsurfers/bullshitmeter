@@ -22,10 +22,4 @@ class TagTest < ActiveSupport::TestCase
   test "should have many articles" do
     assert_equal Set.new([articles(:bullshit)]), Set.new(tags(:economy).articles)
   end
-
-  test "should delete article_tag when destroying" do
-    assert_difference "ArticleTag.count", -1 do
-      tags(:economy).destroy!
-    end
-  end
 end

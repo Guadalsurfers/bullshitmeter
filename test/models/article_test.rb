@@ -37,19 +37,7 @@ class ArticleTest < ActiveSupport::TestCase
     assert_equal Set.new([tags(:economy)]), Set.new(articles(:bullshit).tags)
   end
 
-  test "should delete article_tag when destroying" do
-    assert_difference "ArticleTag.count", -1 do
-      articles(:bullshit).destroy!
-    end
-  end
-
   test "should have many authors" do
     assert_equal Set.new([authors(:juan)]), Set.new(articles(:bullshit).authors)
-  end
-
-  test "should delete article_author when destroying" do
-    assert_difference "ArticleAuthor.count", -1 do
-      articles(:bullshit).destroy!
-    end
   end
 end

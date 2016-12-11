@@ -1,6 +1,5 @@
 class Author < ApplicationRecord
-  has_many :article_authors, dependent: :delete_all
-  has_many :articles,        through: :article_authors
+  has_and_belongs_to_many :articles,  join_table: :article_authors
 
   validates :name, presence: true
 end

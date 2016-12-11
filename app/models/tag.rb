@@ -1,6 +1,5 @@
 class Tag < ApplicationRecord
-  has_many :article_tags, dependent: :delete_all
-  has_many :articles,     through: :article_tags
+  has_and_belongs_to_many :articles, join_table: :article_tags
 
   validates :name,  presence: true, uniqueness: true
 end
