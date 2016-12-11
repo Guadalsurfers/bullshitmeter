@@ -254,7 +254,8 @@ CREATE TABLE users (
     updated_at timestamp without time zone NOT NULL,
     first_name character varying NOT NULL,
     last_name character varying NOT NULL,
-    google_id character varying NOT NULL
+    google_id character varying NOT NULL,
+    authentication_token character varying NOT NULL
 );
 
 
@@ -499,6 +500,13 @@ CREATE INDEX index_authors_on_twitter_handle ON authors USING btree (twitter_han
 --
 
 CREATE UNIQUE INDEX index_tags_on_name ON tags USING btree (name);
+
+
+--
+-- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_authentication_token ON users USING btree (authentication_token);
 
 
 --

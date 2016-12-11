@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_save :ensure_authentication_token
+
   def self.find_or_create_from_google_token(token)
     begin
       google_response = HTTParty.get(google_token_verification_endpoint_token token).parsed_response
@@ -16,7 +18,7 @@ class User < ApplicationRecord
         user.first_name = google_response['given_name']
         user.last_name = google_response['family_name']
         user.email = google_response['email']
-        user.password = 'es justo y necesario'
+        user.password = 'es justo y necesario' # Clean code
         user.save!
 
         return user
@@ -27,7 +29,6 @@ class User < ApplicationRecord
     nil
   end
 
-
   private
   def self.google_token_verification_endpoint_token(token)
     "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{token}"
@@ -36,4 +37,18 @@ class User < ApplicationRecord
   def self.valid_google_response?(google_response)
     (google_response['aud'] == GOOGLE_CLIENT_ID)
   end
+
+  def ensure_authentication_token
+    if authentication_token.blank?
+      loop do
+        token = Devise.friendly_token
+
+        if !User.find_by_authentication_token(token)
+          self.authentication_token = token
+          break
+        end
+      end
+    end
+  end
+
 end
