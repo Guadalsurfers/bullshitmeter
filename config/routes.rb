@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq'
+  mount Sidekiq::Web => ENV['SIDEKIQ_URL'] || '/sidekiq'
 
   namespace :api do
     get 'articles/', to: 'articles#show', as: :article
