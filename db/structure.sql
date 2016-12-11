@@ -157,8 +157,8 @@ ALTER SEQUENCE articles_id_seq OWNED BY articles.id;
 
 CREATE TABLE authors (
     id integer NOT NULL,
-    name character varying NOT NULL,
-    twitter_handle character varying,
+    name citext NOT NULL,
+    twitter_handle citext,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
