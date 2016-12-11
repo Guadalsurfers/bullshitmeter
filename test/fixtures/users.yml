@@ -1,5 +1,14 @@
 paco:
   email: paco@bullshitmeter.site
+  first_name: Paco
+  last_name: BullShitter
+  google_id: 1
+  authentication_token: 897879
 francisco:
   email: francisco@bullshitmeter.site
+  first_name: Francisco
+  last_name: BullShitter
+  google_id: 2
+  authentication_token: 665321213
+
 
