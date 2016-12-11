@@ -198,7 +198,7 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE tags (
     id integer NOT NULL,
-    name character varying NOT NULL,
+    name citext NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

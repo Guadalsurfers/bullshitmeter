@@ -7,16 +7,29 @@ class Articles::FetchMetadata
   end
 
   def call
-    return unless article
+    return unless page
 
-    page = Nokogiri::HTML(open(article.url))
-
-    # Parse HTML and create tags
+    add_authors!
+    add_tags!
   end
 
   private
 
   def article
-    @article ||= Article.find(article_id)
+    @article ||= Article.find(@article_id)
+  end
+
+  def page
+    @page ||= Nokogiri::HTML(open(article.url))
+  end
+
+  def add_authors!
+    authors = FetchAuthors.new.call(page)
+    authors.each { |author_name| article.authors.find_or_create_by!(name: author_name)}
+  end
+
+  def add_tags!
+    tags = FetchTags.new.call(page)
+    tags.each { |tag_name| article.tags.find_or_create_by!(name: tag_name)}
   end
 end
