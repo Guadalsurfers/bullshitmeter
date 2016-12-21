@@ -12,5 +12,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :index]
   end
 
+  resources :authors, only: [:index, :show]
+
   devise_for :users
 end

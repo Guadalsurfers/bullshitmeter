@@ -1,0 +1,26 @@
+%section
+  %dl
+    %dt Name
+    %dd= @author.name
+    %dt Twitter
+    %dd= @author.twitter_handle
+    %dt Score
+    %dd= @author.score
+    %dt Total articles
+    %dd= @author.total_articles
+
+%section
+  %table
+    %thead
+      %tr
+        %th Title
+        %th Medium
+        %th Score
+        %th Published at
+    %tbody
+      - @articles.each do |article|
+        %tr
+          %td= article.title
+          %td= article.medium
+          %td= article.bs_index * 100
+          %td= article.published_at

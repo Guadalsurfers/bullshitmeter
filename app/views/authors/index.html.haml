@@ -1,0 +1,12 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Score
+      %th Total articles
+  %tbody
+    - @authors.each do |author|
+      %tr
+        %td= author.name
+        %td= author.score
+        %td= author.total_articles

@@ -6,4 +6,13 @@ class Article < ApplicationRecord
 
   validates :bs_index, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
   validates :url,      presence: true, uniqueness: true
+
+  # TODO: Placeholder methods, will change when new tables are in place
+  def medium
+    'Example medium'
+  end
+
+  def published_at
+    rand(1..50).days.ago
+  end
 end
